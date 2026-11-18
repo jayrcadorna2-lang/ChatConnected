@@ -1,6 +1,8 @@
 
 <?php
 
+date_default_timezone_set('Asia/Manila');
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 
