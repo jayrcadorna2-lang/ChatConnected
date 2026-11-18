@@ -1,0 +1,27 @@
+
+services:
+  web:
+    build: .
+    container_name: chatconnect_web
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+      - chatconnect_data:/var/lib/chatconnect
+    environment:
+      DB_PATH: /var/lib/chatconnect/chatconnect.sqlite
+      TZ: Asia/Manila
+    restart: unless-stopped
+
+ 
+  adminer:
+    image: adminer
+    container_name: chatconnect_adminer
+    ports:
+      - "8082:8080"
+    volumes:
+      - chatconnect_data:/var/lib/chatconnect:ro
+    restart: unless-stopped
+
+volumes:
+  chatconnect_data:
